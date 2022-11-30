@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "service/grpc/proto";
+
+package grpc;
+
+message PriceNote {
+    int64 unix_timestamp = 1;
+    string currency = 2; // crypto currency
+    double price = 3; // in usd
+}
+
+message SubscribeOnAlertsParams {}
+
+service PricingAlert {
+    rpc SubscribeOnAlerts(SubscribeOnAlertsParams) returns (stream PriceNote);
+}
